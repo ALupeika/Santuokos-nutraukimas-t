@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Registracija{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Registracija</h2>
+    <form method="POST" action="{{ url_for('vartotojai.registracija') }}">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.vardas.label(class="form-label") }}
+            {{ form.vardas(class="form-control", placeholder="Įveskite vardą") }}
+            {% if form.vardas.errors %}
+                <div class="text-danger">{{ form.vardas.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.pavarde.label(class="form-label") }}
+            {{ form.pavarde(class="form-control", placeholder="Įveskite pavardę") }}
+            {% if form.pavarde.errors %}
+                <div class="text-danger">{{ form.pavarde.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.el_pastas.label(class="form-label") }}
+            {{ form.el_pastas(class="form-control", placeholder="Įveskite el. paštą") }}
+            {% if form.el_pastas.errors %}
+                <div class="text-danger">{{ form.el_pastas.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.slaptazodis.label(class="form-label") }}
+            {{ form.slaptazodis(class="form-control", placeholder="Įveskite slaptažodį") }}
+            {% if form.slaptazodis.errors %}
+                <div class="text-danger">{{ form.slaptazodis.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.patikrinti_slaptazodi.label(class="form-label") }}
+            {{ form.patikrinti_slaptazodi(class="form-control", placeholder="Pakartokite slaptažodį") }}
+            {% if form.patikrinti_slaptazodi.errors %}
+                <div class="text-danger">{{ form.patikrinti_slaptazodi.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <div class="text-end">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</div>
+{% endblock %}

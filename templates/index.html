@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Pradžia - Santuokų bylų prognozavimo sistema{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto text-center">
+        <h1 class="display-4 mb-4">Santuokų bylų prognozavimo sistema</h1>
+        <p class="lead mb-5">
+            Ši sistema padeda prognozuoti teismo sprendimus santuokos nutraukimo bylose,
+            naudojant pažangius mašininio mokymosi algoritmus ir statistinę analizę.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <img src="{{ url_for('static', filename='img/family.svg') }}" alt="Šeima" class="feature-icon mb-3">
+                <h3 class="card-title">Vaiko gyvenamoji vieta</h3>
+                <p class="card-text">
+                    Prognozuojama, kam bus nustatyta vaiko gyvenamoji vieta - mamai ar tėčiui.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <img src="{{ url_for('static', filename='img/money.svg') }}" alt="Pinigai" class="feature-icon mb-3">
+                <h3 class="card-title">Išlaikymo dydis</h3>
+                <p class="card-text">
+                    Prognozuojama, kokio dydžio išlaikymas bus priteistas vaikui.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <img src="{{ url_for('static', filename='img/calendar.svg') }}" alt="Kalendorius" class="feature-icon mb-3">
+                <h3 class="card-title">Bendravimo tvarka</h3>
+                <p class="card-text">
+                    Prognozuojama, kokia bendravimo su vaiku tvarka bus nustatyta.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <img src="{{ url_for('static', filename='img/house.svg') }}" alt="Namas" class="feature-icon mb-3">
+                <h3 class="card-title">Turto padalijimas</h3>
+                <p class="card-text">
+                    Prognozuojama, kaip bus padalintas bendras sutuoktinių turtas.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <img src="{{ url_for('static', filename='img/document.svg') }}" alt="Dokumentas" class="feature-icon mb-3">
+                <h3 class="card-title">Prievolių paskirstymas</h3>
+                <p class="card-text">
+                    Prognozuojama, kaip bus paskirstytos bendros sutuoktinių prievolės.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <img src="{{ url_for('static', filename='img/scale.svg') }}" alt="Svarstyklės" class="feature-icon mb-3">
+                <h3 class="card-title">Bylinėjimosi išlaidos</h3>
+                <p class="card-text">
+                    Prognozuojama, kaip bus paskirstytos bylinėjimosi išlaidos.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col text-center">
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary btn-lg">Eiti į valdymo skydelį</a>
+        {% else %}
+        <a href="{{ url_for('vartotojai.registracija') }}" class="btn btn-primary btn-lg me-3">Registruotis</a>
+        <a href="{{ url_for('vartotojai.prisijungimas') }}" class="btn btn-outline-primary btn-lg">Prisijungti</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

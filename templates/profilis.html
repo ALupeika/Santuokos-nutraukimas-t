@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Mano profilis - Santuokų bylų prognozavimo sistema{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Vartotojo profilis</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <img src="{{ profile_image }}" alt="{{ current_user.vardas }}" class="img-fluid rounded-circle mb-3 profile-image">
+                        <h4>{{ current_user.vardas }} {{ current_user.pavarde }}</h4>
+                        <p class="text-muted">{{ current_user.el_pastas }}</p>
+                        <p><small>Prisijungta nuo: {{ current_user.sukurimo_data.strftime('%Y-%m-%d') }}</small></p>
+                    </div>
+                    <div class="col-md-8">
+                        <h5 class="border-bottom pb-2 mb-3">Profilio redagavimas</h5>
+                        {% if form %}
+                        <form method="POST" action="" enctype="multipart/form-data">
+                            {{ form.hidden_tag() }}
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Vartotojo vardas</label>
+                                {{ form.username(class="form-control", id="username") }}
+                                {% for error in form.username.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">El. paštas</label>
+                                {{ form.email(class="form-control", id="email") }}
+                                {% for error in form.email.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="picture" class="form-label">Profilio nuotrauka</label>
+                                {{ form.picture(class="form-control", id="picture") }}
+                                {% for error in form.picture.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="d-grid gap-2">
+                                {{ form.submit(class="btn btn-primary") }}
+                            </div>
+                        </form>
+                        {% else %}
+                        <p class="text-muted">Profilio redagavimas šiuo metu nepasiekiamas.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-8 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Mano bylos</h3>
+            </div>
+            <div class="card-body">
+                {% if bylos %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Bylos ID</th>
+                                <th>Sukūrimo data</th>
+                                <th>Vaikų skaičius</th>
+                                <th>Prognozių skaičius</th>
+                                <th>Veiksmai</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for byla in bylos %}
+                            <tr>
+                                <td>{{ byla.byla_id or '–' }}</td>
+                                <td>{{ byla.sukurimo_data.strftime('%Y-%m-%d') }}</td>
+                                <td>{{ byla.vaikai|length }}</td>
+                                <td>{{ byla.prognozes|length }}</td>
+                                <td>
+                                    <a href="{{ url_for('main.perziureti_byla', bylos_id=byla.id) }}" class="btn btn-sm btn-primary">Peržiūrėti</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-info">
+                    Dar neturite bylų. <a href="{{ url_for('main.sukurti_byla') }}" class="alert-link">Pradėkite bylos prognozavimą</a>.
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-footer text-center">
+                <a href="{{ url_for('main.sukurti_byla') }}" class="btn btn-primary">Pradėti bylos prognozavimą</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <title>Nauja byla</title>
+</head>
+<body>
+    <h1>Sukurti naują bylą</h1>
+    <form method="POST">
+        {{ forma.hidden_tag() }}
+
+        <p>{{ forma.santuokos_trukme.label }}<br>{{ forma.santuokos_trukme() }}</p>
+        <p>{{ forma.amzius_vyras.label }}<br>{{ forma.amzius_vyras() }}</p>
+        <p>{{ forma.amzius_moteris.label }}<br>{{ forma.amzius_moteris() }}</p>
+        <p>{{ forma.negyvena_kartu_menesiai.label }}<br>{{ forma.negyvena_kartu_menesiai() }}</p>
+        <p>{{ forma.pajamos_vyras.label }}<br>{{ forma.pajamos_vyras() }}</p>
+        <p>{{ forma.pajamos_moteris.label }}<br>{{ forma.pajamos_moteris() }}</p>
+        <p>{{ forma.vaiku_skaicius.label }}<br>{{ forma.vaiku_skaicius() }}</p>
+        <p>{{ forma.nutraukimo_budas.label }}<br>{{ forma.nutraukimo_budas() }}</p>
+        <p>{{ forma.bendro_turto_verte.label }}<br>{{ forma.bendro_turto_verte() }}</p>
+        <p>{{ forma.asmeninio_turto_verte_vyras.label }}<br>{{ forma.asmeninio_turto_verte_vyras() }}</p>
+        <p>{{ forma.asmeninio_turto_verte_moteris.label }}<br>{{ forma.asmeninio_turto_verte_moteris() }}</p>
+        <p>{{ forma.bendros_prievoles.label }}<br>{{ forma.bendros_prievoles() }}</p>
+        <p>{{ forma.asmenines_prievoles_vyras.label }}<br>{{ forma.asmenines_prievoles_vyras() }}</p>
+        <p>{{ forma.asmenines_prievoles_moteris.label }}<br>{{ forma.asmenines_prievoles_moteris() }}</p>
+        <p>{{ forma.turto_vyras_po_asmeniniu_lesu.label }}<br>{{ forma.turto_vyras_po_asmeniniu_lesu() }}</p>
+        <p>{{ forma.turto_moteris_po_asmeniniu_lesu.label }}<br>{{ forma.turto_moteris_po_asmeniniu_lesu() }}</p>
+        <p>{{ forma.soc_problemos.label }}<br>{{ forma.soc_problemos() }}</p>
+
+        <h3>Vaikų duomenys (maks. 5):</h3>
+        {% for i in range(5) %}
+        <fieldset>
+            <legend>Vaikas {{ i+1 }}</legend>
+            <label>Amžius:</label>
+            <input type="number" name="vaikas_{{i}}_amzius" {% if forma.vaiku_skaicius.data is not none and i >= forma.vaiku_skaicius.data %}disabled{% endif %}>
+            <label>Emocinis ryšys su mama:</label>
+            <input type="text" name="vaikas_{{i}}_emocinis_mama" {% if forma.vaiku_skaicius.data is not none and i >= forma.vaiku_skaicius.data %}disabled{% endif %}>
+            <label>Emocinis ryšys su tėvu:</label>
+            <input type="text" name="vaikas_{{i}}_emocinis_tevas" {% if forma.vaiku_skaicius.data is not none and i >= forma.vaiku_skaicius.data %}disabled{% endif %}>
+            <label>Poreikiai:</label>
+            <input type="text" name="vaikas_{{i}}_poreikiai" {% if forma.vaiku_skaicius.data is not none and i >= forma.vaiku_skaicius.data %}disabled{% endif %}>
+        </fieldset>
+        {% endfor %}
+
+        <p><input type="submit" value="Išsaugoti bylą"></p>
+    </form>
+</body>
+</html>

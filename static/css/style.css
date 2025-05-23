@@ -1,0 +1,197 @@
+/* Main Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* Header & Navbar */
+.navbar {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    border-top-left-radius: 0.5rem !important;
+    border-top-right-radius: 0.5rem !important;
+}
+
+/* Feature Icons */
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+}
+
+/* Hero Section */
+.display-4 {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.lead {
+    color: #555;
+    font-size: 1.15rem;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 0.25rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-outline-primary {
+    color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-outline-primary:hover {
+    background-color: #3498db;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Profile Page */
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Tables */
+.table {
+    font-size: 0.95rem;
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Forms */
+.form-control, .form-select {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0.5rem 0.75rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+}
+
+/* Alerts */
+.alert {
+    border-radius: 0.25rem;
+    border: none;
+}
+
+/* Footer */
+footer {
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card-header h3 {
+        font-size: 1.25rem;
+    }
+    
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+}
+
+/* Dashboard Specific */
+.stats-card {
+    border-left: 4px solid #3498db;
+}
+
+.stats-icon {
+    font-size: 2.5rem;
+    color: #3498db;
+}
+
+/* Prognosis Results */
+.prognosis-result {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-top: 1.5rem;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+.prognosis-result h4 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.prognosis-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #3498db;
+}
+
+.probability-bar {
+    height: 0.5rem;
+    background-color: #e9ecef;
+    border-radius: 1rem;
+    margin: 0.5rem 0 1rem;
+    overflow: hidden;
+}
+
+.probability-fill {
+    height: 100%;
+    background-color: #3498db;
+    border-radius: 1rem;
+}
+
+/* Chart Containers */
+.chart-container {
+    height: 300px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}

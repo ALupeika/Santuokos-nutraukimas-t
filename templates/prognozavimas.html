@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Prognozės rezultatai - Santuokų bylų prognozavimo sistema{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Prognozės rezultatai - {{ byla.byla_id }}</h3>
+            </div>
+            <div class="card-body">
+                <h5 class="mb-3 border-bottom pb-2">Bylos informacija</h5>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Santuokos trukmė:</strong> {{ byla.santuokos_trukme }} m.</li>
+                            <li class="list-group-item"><strong>Vyro amžius:</strong> {{ byla.amzius_vyras }} m.</li>
+                            <li class="list-group-item"><strong>Moters amžius:</strong> {{ byla.amzius_moteris }} m.</li>
+                            <li class="list-group-item"><strong>Vaikų skaičius:</strong> {{ byla.vaiku_skaicius }}</li>
+                            <li class="list-group-item"><strong>Nutraukimo būdas:</strong> {{ byla.nutraukimo_budas }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Bendras turtas:</strong> {{ byla.bendro_turto_verte }} EUR</li>
+                            <li class="list-group-item"><strong>Asmeninis turtas (vyras):</strong> {{ byla.asmeninio_turto_verte_vyras }} EUR</li>
+                            <li class="list-group-item"><strong>Asmeninis turtas (moteris):</strong> {{ byla.asmeninio_turto_verte_moteris }} EUR</li>
+                            <li class="list-group-item"><strong>Socialinės problemos:</strong> {{ byla.soc_problemos }}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                {% if vaikai %}
+                <h5 class="mb-3 border-bottom pb-2">Vaikų duomenys</h5>
+                <div class="table-responsive mb-4">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nr.</th>
+                                <th>Amžius</th>
+                                <th>Ryšys su mama</th>
+                                <th>Ryšys su tėvu</th>
+                                <th>Poreikiai (EUR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for vaikas in vaikai %}
+                            <tr>
+                                <td>{{ vaikas.vaiko_nr }}</td>
+                                <td>{{ vaikas.amzius }}</td>
+                                <td>{{ vaikas.emocinis_rysys_mama }}</td>
+                                <td>{{ vaikas.emocinis_rysys_tevas }}</td>
+                                <td>{{ vaikas.poreikiai }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+
+                <h5 class="mb-3 border-bottom pb-2">Prognozių rezultatai</h5>
+                {% if prognozes %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Prognozės tipas</th>
+                                <th>Rezultatas</th>
+                                <th>Tikimybė / Patikimumas</th>
+                                <th>Modelis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for prognoze in prognozes %}
+                            <tr>
+                                <td>
+                                    {% if prognoze.prognozes_tipas == 'gyvenamoji_vieta' %}Vaiko gyvenamoji vieta
+                                    {% elif prognoze.prognozes_tipas == 'islaikymas' %}Išlaikymas
+                                    {% elif prognoze.prognozes_tipas == 'bendravimo_tvarka' %}Bendravimo tvarka
+                                    {% elif prognoze.prognozes_tipas == 'turto_padalijimas' %}Turto padalijimas
+                                    {% elif prognoze.prognozes_tipas == 'prievoles' %}Prievolės
+                                    {% elif prognoze.prognozes_tipas == 'bylinejimosi_islaidos' %}Bylinėjimosi išlaidos
+                                    {% else %}{{ prognoze.prognozes_tipas }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ prognoze.prognozes_reiksme }}</td>
+                                <td>{{ "%.1f"|format(prognoze.tikimybe * 100) }}%</td>
+                                <td>{{ prognoze.modelio_pavadinimas }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-info">Prognozės nebuvo sugeneruotos.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Prisijungimas{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Prisijungimas</h2>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.el_pastas.label(class="form-label") }}
+            {{ form.el_pastas(class="form-control", placeholder="Įveskite el. paštą") }}
+            {% for error in form.el_pastas.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.slaptazodis.label(class="form-label") }}
+            {{ form.slaptazodis(class="form-control", placeholder="Įveskite slaptažodį") }}
+            {% for error in form.slaptazodis.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="form-check mb-3">
+            {{ form.prisiminti(class="form-check-input") }}
+            {{ form.prisiminti.label(class="form-check-label") }}
+        </div>
+
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+</div>
+{% endblock %}
