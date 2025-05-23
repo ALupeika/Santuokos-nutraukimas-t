@@ -1,0 +1,52 @@
+
+gitignore_content = """
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VSCode and PyCharm
+.vscode/
+.idea/
+
+# OS-generated
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# CSV duomenys
+*.csv
+
+# Modeliai
+*.joblib
+
+# Migracijos (jei naudojama Flask-Migrate)
+migrations/
+
+# Duomenų analizės outputai
+*.png
+*.pdf
+*.svg
+
+# Cache
+*.cache
+.cache/
+"""
+
+# Įrašome į failą
+gitignore_path = "/mnt/data/.gitignore"
+with open(gitignore_path, "w") as f:
+    f.write(gitignore_content)
+
+gitignore_path
