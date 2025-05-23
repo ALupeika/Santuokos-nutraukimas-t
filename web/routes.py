@@ -129,19 +129,7 @@ def sukurti_byla():
     return render_template('bylos_forma.html', title='Nauja byla', forma=forma)
 
 
-@main_bp.route('/bylos/<int:bylos_id>')
-@login_required
-def perziureti_byla(bylos_id):
-    byla = Byla.query.get_or_404(bylos_id)
 
-    if byla.vartotojo_id != current_user.id:
-        flash('Neturite teisės peržiūrėti šios bylos.', 'danger')
-        return redirect(url_for('main.dashboard'))
-
-    vaikai = Vaikas.query.filter_by(bylos_id=byla.id).all()
-    prognozes = Prognoze.query.filter_by(bylos_id=byla.id).all()
-
-    return render_template('byla.html', title=f"Byla {bylos_id}", byla=byla, vaikai=vaikai, prognozes=prognozes)
 
 @main_bp.route('/bylos/<int:bylos_id>/vaikai', methods=['GET', 'POST'])
 @login_required
@@ -215,7 +203,7 @@ def perziureti_byla(bylos_id):
     prognozes = Prognoze.query.filter_by(bylos_id=byla.id).all()
     
     return render_template(
-        'byla.html',
+        'prognozavimas.html',
         title=f'Byla {byla.byla_id}',
         byla=byla,
         vaikai=vaikai,
